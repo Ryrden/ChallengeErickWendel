@@ -12,7 +12,15 @@ public class Problem {
     }
 
     public static void solve() throws IOException {
-        System.out.printf("%s\n", readFile());
+        var data = readFile();
+
+        for (int i = 0; i < data.length() - 9; i++) {
+            var sub = data.substring(i, i + 9);
+            if (sub.equals(new StringBuilder(sub).reverse().toString())) {
+                System.out.println(sub);
+                return;
+            }
+        }
     }
 
     public static String readFile() throws IOException {
