@@ -13,7 +13,6 @@ public class Problem {
 
     public static void solve() throws IOException {
         var data = readFile();
-
         for (int i = 0; i < data.length() - 9; i++) {
             var sub = data.substring(i, i + 9);
             if (sub.equals(new StringBuilder(sub).reverse().toString())) {
@@ -28,7 +27,7 @@ public class Problem {
 
     public static String readFile() throws IOException {
         var absolutePath = new File("").getAbsolutePath();
-        var file = new File( absolutePath + "/src/java/resources/oneThousandPiDigits.txt");
+        var file = new File( absolutePath + "/src/java/resources/oneMillionPiDigits.txt");
 
         var bufferedReader = new BufferedReader(new FileReader(file));
         var result = bufferedReader.readLine();
