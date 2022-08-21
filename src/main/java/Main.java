@@ -1,7 +1,10 @@
+import main.java.Problem;
+
 public class Main {
     public static void main(String[] args) {
-        
+        Problem.solve();
     }
+
     public boolean isPrime(long n) {
         if (n < 2)
             return false;
