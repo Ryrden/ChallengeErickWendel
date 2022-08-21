@@ -17,10 +17,13 @@ public class Problem {
         for (int i = 0; i < data.length() - 9; i++) {
             var sub = data.substring(i, i + 9);
             if (sub.equals(new StringBuilder(sub).reverse().toString())) {
-                System.out.println(sub);
-                return;
+                if (isPrime(Long.parseLong(sub))) {
+                    System.out.printf("%s\n", sub);
+                    return;
+                }
             }
         }
+        System.out.println("No palindrome found");
     }
 
     public static String readFile() throws IOException {
@@ -33,7 +36,7 @@ public class Problem {
         return result;
     }
 
-    public boolean isPrime(long n) {
+    public static boolean isPrime(long n) {
         if (n < 2)
             return false;
 
