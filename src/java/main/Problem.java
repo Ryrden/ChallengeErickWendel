@@ -1,10 +1,12 @@
-package main.java;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
 public class Problem {
+
+    public Problem() {
+        super();
+    }
 
     public static void solve() {
         System.out.printf("%s\n", readFile());

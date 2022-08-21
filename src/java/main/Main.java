@@ -1,6 +1,10 @@
-import main.java.Problem;
+package main;
 
 public class Main {
+    public Main() {
+        super();
+    }
+
     public static void main(String[] args) {
         Problem.solve();
     }
