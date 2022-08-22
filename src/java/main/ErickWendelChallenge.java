@@ -10,14 +10,14 @@ public class ErickWendelChallenge {
 
     public static void problemOne() {
         var data = readFile();
-        System.out.println(getPrimePalindromicWithLength(9, data));
+        System.out.println(getPalindromicPrimeWithLength(9, data));
     }
 
     public static void problemTwo() {
         var result = "no palindromic prime found";
         //get request from https://api.pi.delivery/v1/pi?start=0&numberOfDigits=100
         var data = getDataFromApi();
-        result = getPrimePalindromicWithLength(21, data);
+        result = getPalindromicPrimeWithLength(21, data);
         System.out.println(result);
     }
 
@@ -26,7 +26,7 @@ public class ErickWendelChallenge {
         return null;
     }
 
-    public static String getPrimePalindromicWithLength(int length, String data) {
+    public static String getPalindromicPrimeWithLength(int length, String data) {
         for (int i = 0; i < data.length() - length; i++) {
             var sub = data.substring(i, i + length);
             if (sub.equals(new StringBuilder(sub).reverse().toString())) {
