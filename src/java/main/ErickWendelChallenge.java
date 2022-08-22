@@ -4,6 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+import org.json.*;
+
 public class ErickWendelChallenge {
     private ErickWendelChallenge() {
     }
@@ -17,13 +25,31 @@ public class ErickWendelChallenge {
         var result = "no palindromic prime found";
         //get request from https://api.pi.delivery/v1/pi?start=0&numberOfDigits=100
         var data = getDataFromApi();
-        result = getPalindromicPrimeWithLength(21, data);
+        System.out.println(data);
+        result = getPalindromicPrimeWithLength(9, data);
         System.out.println(result);
     }
 
     private static String getDataFromApi() {
-        // TODO GET Request from API https://api.pi.delivery/v1/pi?start=0&numberOfDigits=100
-        return null;
+        try {
+            var request = HttpRequest
+                    .newBuilder(new URI("https://api.pi.delivery/v1/pi?start=0&numberOfDigits=100"))
+                    .GET()
+                    .build();
+
+            var response = HttpClient.newBuilder()
+                    .build()
+                    .send(request, HttpResponse.BodyHandlers.ofString())
+                    .body();
+
+            var  json = new JSONObject(response);
+            return json.get("content").toString();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return "";
     }
 
     public static String getPalindromicPrimeWithLength(int length, String data) {
@@ -54,7 +80,7 @@ public class ErickWendelChallenge {
         var absolutePath = new File("").getAbsolutePath();
         var file = new File(absolutePath + "/src/java/main/oneMillionPiDigits.txt");
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-           result = bufferedReader.readLine();
+            result = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
