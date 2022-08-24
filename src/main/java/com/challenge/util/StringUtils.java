@@ -21,8 +21,8 @@ public class StringUtils {
             return false;
 
         var remainderByTwo = n.remainder(BigInteger.TWO);
-        var isDividedByZero = remainderByTwo.compareTo(BigInteger.ZERO) == 0;
-        if (isDividedByZero)
+        var isDividedByTwo = remainderByTwo.compareTo(BigInteger.ZERO) == 0;
+        if (isDividedByTwo)
             return n.compareTo(BigInteger.TWO) == 0;
 
         var nRoot = n.sqrt();
