@@ -1,4 +1,4 @@
-package main;
+package com.challenge;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,7 +21,7 @@ public class ErickWendelChallenge {
         var numberOfDigitsToCheck = 9;
         String found = null;
         var data = "";
-        //TODO use Threads to speed up the process
+        // TODO use Threads to speed up the process
         while (start < max) {
             data = HandlerPiApi.getDataFromApi(start, numberOfDigits);
             found = getPalindromicPrimeWithLength(numberOfDigitsToCheck, data);
@@ -36,7 +36,6 @@ public class ErickWendelChallenge {
         }
         return found;
     }
-
 
     public static String getPalindromicPrimeWithLength(int length, String data) {
         var windowSubstring = data.substring(0, length);

@@ -1,4 +1,4 @@
-package main;
+package com.challenge;
 
 import org.json.JSONObject;
 
@@ -11,6 +11,7 @@ import java.net.http.HttpResponse;
 
 public class HandlerPiApi {
     private static final String BASE_URL = "https://api.pi.delivery/v1/pi?";
+
     private HandlerPiApi() {
     }
 
@@ -27,7 +28,7 @@ public class HandlerPiApi {
                     .send(request, HttpResponse.BodyHandlers.ofString())
                     .body();
 
-            var  json = new JSONObject(response);
+            var json = new JSONObject(response);
             return json.get("content").toString();
         } catch (URISyntaxException e) {
             e.printStackTrace();
