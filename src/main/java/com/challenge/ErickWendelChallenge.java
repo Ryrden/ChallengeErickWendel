@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import com.challenge.util.PiApi;
+
 public class ErickWendelChallenge {
     private ErickWendelChallenge() {
     }
@@ -23,7 +25,7 @@ public class ErickWendelChallenge {
         var data = "";
         // TODO use Threads to speed up the process
         while (start < max) {
-            data = HandlerPiApi.getDataFromApi(start, numberOfDigits);
+            data = PiApi.getDataFromApi(start, numberOfDigits);
             found = getPalindromicPrimeWithLength(numberOfDigitsToCheck, data);
             if (found != null)
                 break;

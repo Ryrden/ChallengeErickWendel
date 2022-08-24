@@ -1,4 +1,4 @@
-package com.challenge;
+package com.challenge.util;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
