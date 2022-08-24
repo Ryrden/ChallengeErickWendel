@@ -21,16 +21,16 @@ public class StringUtils {
             return false;
 
         var remainderByTwo = n.remainder(BigInteger.TWO);
-        var isDividedByTwo = remainderByTwo.compareTo(BigInteger.ZERO) == 0;
-        if (isDividedByTwo)
+        var isDivisibleByTwo = remainderByTwo.compareTo(BigInteger.ZERO) == 0;
+        if (isDivisibleByTwo)
             return n.compareTo(BigInteger.TWO) == 0;
 
         var nRoot = n.sqrt();
 
         for (var i = new BigInteger("3"); i.compareTo(nRoot) <= 0; i = i.add(BigInteger.TWO)) {
             var remainderByI = n.remainder(i);
-            var isDividedByI = remainderByI.compareTo(BigInteger.ZERO) == 0;
-            if (isDividedByI)
+            var isDivisibleByI = remainderByI.compareTo(BigInteger.ZERO) == 0;
+            if (isDivisibleByI)
                 return false;
         }
         return true;
