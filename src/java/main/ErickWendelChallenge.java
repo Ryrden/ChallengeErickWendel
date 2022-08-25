@@ -18,14 +18,18 @@ public class ErickWendelChallenge {
         var start = 1L;
         var numberOfDigits = 1000;
         var max = 100_000_000_000L;
-        var numberOfDigitsToCheck = 9;
+        var numberOfDigitsToCheck = 21;
         String found = null;
         var data = "";
         //TODO use Threads to speed up the process
+        boolean[] foundPrime = {false};
         while (start < max) {
             data = HandlerPiApi.getDataFromApi(start, numberOfDigits);
-            found = ProblemSolver.getPalindromicPrimeWithLength(numberOfDigitsToCheck, data);
-            if (found != null)
+            var parameters = new Data(numberOfDigitsToCheck,data);
+            var myFirstThread = new ProblemSolver(parameters,foundPrime);
+            new Thread(myFirstThread).start();
+            System.out.println("Actual point: " + start);
+            if (foundPrime[0])
                 break;
             start += numberOfDigits - numberOfDigitsToCheck + 1;
         }

@@ -1,12 +1,22 @@
 package main;
 
-public class ProblemSolver extends Thread{
-    private ProblemSolver() {
+public class ProblemSolver implements Runnable {
+    Data parameter;
+    boolean[] foundPrime;
+    public ProblemSolver(Data parameter,boolean[] foundPrime) {
+        this.parameter = parameter;
+        this.foundPrime = foundPrime;
     }
 
     @Override
     public void run(){
-
+        var length = parameter.length();
+        var data = parameter.data();
+        var found = getPalindromicPrimeWithLength(length,data);
+        if (found != null) {
+            foundPrime[0] = true;
+            System.out.println(found);
+        }
     }
     public static String getPalindromicPrimeWithLength(int length, String data) {
         var windowSubstring = data.substring(0, length);
@@ -26,6 +36,7 @@ public class ProblemSolver extends Thread{
     }
 
     public static boolean isPrime(String num) {
+        //TODO treat number to 21 digits
         var n = Long.parseLong(num);
         if (n < 2)
             return false;
