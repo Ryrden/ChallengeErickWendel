@@ -16,24 +16,28 @@ public class HandlerPiApi {
 
     public static String getDataFromApi(long start, int numberOfDigits) {
         var url = BASE_URL + "start=" + start + "&numberOfDigits=" + numberOfDigits;
-        try {
-            var request = HttpRequest
-                    .newBuilder(new URI(url))
-                    .GET()
-                    .build();
+        for(int actualTry=0;;actualTry++) {
+            try {
+                var request = HttpRequest
+                        .newBuilder(new URI(url))
+                        .GET()
+                        .build();
 
-            var response = HttpClient.newBuilder()
-                    .build()
-                    .send(request, HttpResponse.BodyHandlers.ofString())
-                    .body();
-
-            var  json = new JSONObject(response);
-            return json.get("content").toString();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+                return HttpClient.newBuilder()
+                        .build()
+                        .send(request, HttpResponse.BodyHandlers.ofString())
+                        .body().split("\"")[3];
+            } catch (URISyntaxException e) {
+                if (actualTry < 3) {
+                    continue;
+                }
+                e.printStackTrace();
+            } catch (IOException | InterruptedException e) {
+                if (actualTry < 3) {
+                    continue;
+                }
+                throw new RuntimeException(e);
+            }
         }
-        return "";
     }
 }
