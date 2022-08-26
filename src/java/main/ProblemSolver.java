@@ -2,8 +2,8 @@ package main;
 
 public class ProblemSolver implements Runnable {
     Data parameter;
-    boolean[] foundPrime;
-    public ProblemSolver(Data parameter,boolean[] foundPrime) {
+    int[] foundPrime;
+    public ProblemSolver(Data parameter,int[] foundPrime) {
         this.parameter = parameter;
         this.foundPrime = foundPrime;
     }
@@ -14,8 +14,8 @@ public class ProblemSolver implements Runnable {
         var data = parameter.data();
         var found = getPalindromicPrimeWithLength(length,data);
         if (found != null) {
-            foundPrime[0] = true;
-            System.out.println(found);
+            foundPrime[0] = 1;
+            foundPrime[1] = Integer.parseInt(found);
         }
     }
     public static String getPalindromicPrimeWithLength(int length, String data) {
